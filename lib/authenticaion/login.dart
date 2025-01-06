@@ -13,7 +13,7 @@ class LoginPapge extends StatelessWidget {
     return Scaffold(
       body: screenWidth.width < breakpoint
           ? const MobileLogin() // Display mobile layout for small screens
-          : WebLoginPage(),
+          : const WebLoginPage(),
     );
   }
 }

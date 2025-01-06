@@ -17,10 +17,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // SignupService().signup(
-    //     email: "abyyi@gmail.com",
-    //     password: "12345679989",
-    //     username: "abillkkk");
+    AuthService().login(password: "1234567890", username: "SALIQKT");
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       scaffoldMessengerKey: scaffoldMessngerKey,

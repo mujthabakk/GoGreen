@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:djangowithflutter/authenticaion/login.dart';
 import 'package:djangowithflutter/authenticaion/widgets/text_feild.dart';
 import 'package:flutter/gestures.dart';
@@ -183,6 +185,7 @@ class WebSingupPage extends StatelessWidget {
                                   onTap: () {
                                     if (fromkey.currentState?.validate() ??
                                         false) {
+                                      log("message23453367");
                                       context.read<SingupBloc>().add(
                                             SingupEvent.started(
                                               email: emailController.text,

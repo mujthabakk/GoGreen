@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:djangowithflutter/authenticaion/controller/login_bloc.dart';
+import 'package:djangowithflutter/authenticaion/controller/singup_bloc.dart';
 import 'package:djangowithflutter/authenticaion/service/signup_service.dart';
 import 'package:djangowithflutter/authenticaion/singup.dart';
 import 'package:djangowithflutter/authenticaion/widgets/text_feild.dart';
@@ -100,10 +101,6 @@ class WebLoginPage extends StatelessWidget {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your email address';
-                                } else if (!RegExp(
-                                        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\$')
-                                    .hasMatch(value)) {
-                                  return 'Please enter a valid email address';
                                 }
                                 return null;
                               },
@@ -155,6 +152,14 @@ class WebLoginPage extends StatelessWidget {
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
                                   log("Form is valid. Proceed with login.");
+                                  log("Username: ${nameController.text}");
+                                  log("Password: ${passwordController.text}");
+                                  // context.read<LoginBloc>().add(
+                                  //       LoginEvent.started(
+                                  //         password: passwordController.text,
+                                  //         username: nameController.text,
+                                  //       ),
+                                  //     );
 
                                   // Add your login logic here
                                 } else {

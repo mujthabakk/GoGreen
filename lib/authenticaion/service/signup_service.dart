@@ -15,7 +15,7 @@ class AuthService {
     try {
       log("hbunjkm");
       final Response response = await dio.post(
-        'http://192.168.1.51:8000/login/register/',
+        'http://127.0.0.1:8000/login/register/',
         data: {
           'username': username,
           'email': email,
@@ -52,14 +52,18 @@ class AuthService {
     required String username,
     required String password,
   }) async {
+    log("mujthaba ------------");
     try {
+      log(username);
+      log(password);
       final Response response = await dio.post(
-        'http://192.168.1.51:8000/login/login/',
+        'http://127.0.0.1:8000/login/login/',
         data: {
-          'email': username,
-          'password': password,
+          'username': "SALIQKT",
+          'password': "1234567890",
         },
       );
+      log("message1234------------######");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         log('Success Response: ${response.data}');

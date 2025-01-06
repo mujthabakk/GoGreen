@@ -78,12 +78,12 @@ class MobileLogin extends StatelessWidget {
                       //   hintText: 'Example@gmail.com',
                       // ),
                       TextFIEID(
-                        headtex: 'Email address *',
-                        hintText: 'Example@gmail.com',
+                        headtex: 'Username *',
+                        hintText: 'enter username',
                         controller: nameController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email address';
+                            return 'enter username';
                           }
                           return null;
                         },
