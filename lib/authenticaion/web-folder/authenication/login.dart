@@ -1,10 +1,11 @@
 import 'dart:developer';
 
 import 'package:djangowithflutter/authenticaion/controller/login_bloc.dart';
-import 'package:djangowithflutter/authenticaion/controller/singup_bloc.dart';
 import 'package:djangowithflutter/authenticaion/service/signup_service.dart';
 import 'package:djangowithflutter/authenticaion/singup.dart';
+import 'package:djangowithflutter/authenticaion/view/forgot_password.dart';
 import 'package:djangowithflutter/authenticaion/widgets/text_feild.dart';
+import 'package:djangowithflutter/home/view/main_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -146,25 +147,33 @@ class WebLoginPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 15),
                             InkWell(
-                              borderRadius: BorderRadius.circular(30),
-                              splashColor: Colors.greenAccent.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(
+                                30,
+                              ),
+                              splashColor:
+                                  Colors.greenAccent.withValues(alpha: 0.3),
                               highlightColor: Colors.transparent,
                               onTap: () {
-                                if (formKey.currentState!.validate()) {
-                                  log("Form is valid. Proceed with login.");
-                                  log("Username: ${nameController.text}");
-                                  log("Password: ${passwordController.text}");
-                                  // context.read<LoginBloc>().add(
-                                  //       LoginEvent.started(
-                                  //         password: passwordController.text,
-                                  //         username: nameController.text,
-                                  //       ),
-                                  //     );
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const MainScreen(),
+                                    ));
+                                // if (formKey.currentState!.validate()) {
+                                //   log("Form is valid. Proceed with login.");
+                                //   log("Username: ${nameController.text}");
+                                //   log("Password: ${passwordController.text}");
+                                //   // context.read<LoginBloc>().add(
+                                //   //       LoginEvent.started(
+                                //   //         password: passwordController.text,
+                                //   //         username: nameController.text,
+                                //   //       ),
+                                //   //     );
 
-                                  // Add your login logic here
-                                } else {
-                                  log("Form is invalid. Show errors.");
-                                }
+                                //   // Add your login logic here
+                                // } else {
+                                //   log("Form is invalid. Show errors.");
+                                // }
                               },
                               child: Ink(
                                 decoration: const BoxDecoration(
@@ -193,7 +202,15 @@ class WebLoginPage extends StatelessWidget {
                             // Forgot Password button
                             TextButton(
                               onPressed: () {
-                                debugPrint("Forgot Password tapped");
+                                log("Forgot Password tapped");
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgetPasswordPage(),
+                                  ),
+                                );
+
                                 // Add your functionality for Forgot Password here
                               },
                               child: const Text(

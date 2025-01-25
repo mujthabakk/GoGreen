@@ -17,6 +17,7 @@ dependencies:
   shimmer: ^3.0.0
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
