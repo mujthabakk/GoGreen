@@ -1,5 +1,6 @@
 import 'package:djangowithflutter/core/colors.dart';
 import 'package:djangowithflutter/home/view/home_page.dart';
+import 'package:djangowithflutter/plants/plants.dart';
 import 'package:flutter/material.dart';
 
 class BottomBarScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class BottomBarScreenState extends State<BottomBarScreen> {
   // List of pages for each BottomNavigationBar item
   final List<Widget> _pages = [
     const HomeScreen(),
-    const PlantsPage(),
+    const PalantsScreen(),
     const OffersPage(),
     const CartPage(),
   ];

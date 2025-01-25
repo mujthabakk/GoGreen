@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+          isMobile ? ImageCarousel() : const SizedBox.shrink(),
           SizedBox(
             height: screenSize.width * 0.01,
           ),

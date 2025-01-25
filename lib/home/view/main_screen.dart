@@ -1,57 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:djangowithflutter/home/view/home_page.dart';
+
+import 'package:djangowithflutter/core/screen_type.dart';
+
 import 'package:djangowithflutter/authenticaion/view/mobile-folder/bottom_bar/bottom_bar.dart';
-import 'package:djangowithflutter/core/screen_type.dart';
-import 'package:djangowithflutter/home/view/home_page.dart';
-import 'package:djangowithflutter/plants/plants.dart';
 
-import 'package:flutter/material.dart';
-
-// class MainScreen extends StatelessWidget {
-//   static const routePath = '/MainSeccen';
-//   const MainScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     Size screenSize = MediaQuery.of(context).size;
-//     bool isMobile = screenSize.width <= 600;
-//     // final double cardHeight = isMobile ? 320 : 330;
-//     // final cardWidth =
-//     // isMobile ? screenSize.width * 0.40 : screenSize.width * 0.30;
-//     return Scaffold(
-//       appBar: const CommenAppbar(),
-//       drawer: ScreenType.isMobile(context)
-//           ? Drawer(
-//               child: ListView(
-//                 padding: EdgeInsets.zero,
-//                 children: const <Widget>[
-//                   DrawerHeader(child: Text('Menu')),
-//                   ListTile(title: Text('Item 1')),
-//                   ListTile(title: Text('Item 2')),
-//                 ],
-//               ),
-//             )
-//           : null,
-//       body: isMobile
-//           ? const BottomBarScreen()
-//           : SingleChildScrollView(
-//               child: Column(
-//               children: [
-//                 ImageCarousel(),
-//                 const HomeScreen(),
-//                 const ResponsiveFooter(),
-//               ],
-//             )), // No drawer for web
-//     );
-//   }
-// }
-import 'package:flutter/material.dart';
-import 'package:djangowithflutter/home/view/home_page.dart';
-
-import 'package:djangowithflutter/core/screen_type.dart';
-
-import 'package:flutter/material.dart';
-import 'package:djangowithflutter/core/screen_type.dart';
-import 'package:djangowithflutter/authenticaion/view/mobile-folder/bottom_bar/bottom_bar.dart';
-import 'package:djangowithflutter/home/view/home_page.dart';
 import 'package:djangowithflutter/plants/plants.dart';
 
 class MainScreen extends StatefulWidget {
