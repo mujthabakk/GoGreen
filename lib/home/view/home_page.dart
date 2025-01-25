@@ -181,9 +181,19 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class CommenAppbar extends StatelessWidget implements PreferredSizeWidget {
+class CommenAppbar extends StatefulWidget implements PreferredSizeWidget {
   final Function(int index)? onMenuItemTap;
   const CommenAppbar({super.key, this.onMenuItemTap});
+
+  @override
+  State<CommenAppbar> createState() => _CommenAppbarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class _CommenAppbarState extends State<CommenAppbar> {
+  int selectedIndex = 0; // Track the selected menu index
 
   @override
   Widget build(BuildContext context) {
@@ -256,15 +266,15 @@ class CommenAppbar extends StatelessWidget implements PreferredSizeWidget {
                 // Menu items aligned to the right
                 Row(
                   children: [
-                    _buildMenuItem("HOME", Colors.black, 0),
+                    _buildMenuItem("HOME", 0),
                     const SizedBox(width: 20),
-                    _buildMenuItem("PLANT", Colors.white, 1),
+                    _buildMenuItem("PLANT", 1),
                     const SizedBox(width: 20),
-                    _buildMenuItem("SEED", Colors.white, 2),
+                    _buildMenuItem("SEED", 2),
                     const SizedBox(width: 20),
-                    _buildMenuItem("POTS & PLANTERS", Colors.white, 3),
+                    _buildMenuItem("POTS & PLANTERS", 3),
                     const SizedBox(width: 20),
-                    _buildMenuItem("OFFERS", Colors.white, 4),
+                    _buildMenuItem("OFFERS", 4),
                     const SizedBox(width: 20),
                     // Search bar with icons
                     Container(
@@ -315,26 +325,26 @@ class CommenAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   // Helper function to build menu items
-  Widget _buildMenuItem(String title, Color color, int index) {
+  Widget _buildMenuItem(String title, int index) {
     return InkWell(
       onTap: () {
-        if (onMenuItemTap != null) {
-          onMenuItemTap!(index);
+        setState(() {
+          selectedIndex = index; // Update selected index
+        });
+        if (widget.onMenuItemTap != null) {
+          widget.onMenuItemTap!(index);
         }
       },
       child: Text(
         title,
         style: TextStyle(
-          color: color,
+          color: selectedIndex == index ? Colors.black : Colors.white,
           fontWeight: FontWeight.normal,
           fontSize: 16,
         ),
       ),
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
 class ProductCard extends StatelessWidget {
