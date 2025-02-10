@@ -1,10 +1,9 @@
 import 'package:djangowithflutter/core/colors.dart';
 import 'package:djangowithflutter/home/view/home_page.dart';
-import 'package:djangowithflutter/product_details/product_details_page.dart';
 import 'package:flutter/material.dart';
 
-class PalantsScreen extends StatelessWidget {
-  const PalantsScreen({super.key});
+class SeedScreen extends StatelessWidget {
+  const SeedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class PalantsScreen extends StatelessWidget {
                   height: screenSize.width * 0.02,
                 ),
                 Text(
-                  "Plants",
+                  "Seeds",
                   style: TextStyle(
                     fontSize: isMobile ? 24 : 34,
                     fontWeight: FontWeight.bold,
@@ -84,15 +83,7 @@ class PalantsScreen extends StatelessWidget {
                         mainAxisExtent: isMobile ? null : 450,
                         childAspectRatio: .61),
                     itemBuilder: (context, index) {
-                      return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ProductDetailsScreen()));
-                          },
-                          child: const ProductCard());
+                      return const ProductCard();
                     },
                     itemCount: 25,
                   ),

@@ -1,3 +1,8 @@
+import 'package:djangowithflutter/core/commen_widget/commen_app_bar_widget.dart';
+import 'package:djangowithflutter/home/view/bloc/home_bloc.dart';
+import 'package:djangowithflutter/offer/offer_screen.dart';
+import 'package:djangowithflutter/pots&planter/pots&plantet_screen.dart';
+import 'package:djangowithflutter/seed/seed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:djangowithflutter/home/view/home_page.dart';
 
@@ -6,28 +11,23 @@ import 'package:djangowithflutter/core/screen_type.dart';
 import 'package:djangowithflutter/authenticaion/view/mobile-folder/bottom_bar/bottom_bar.dart';
 
 import 'package:djangowithflutter/plants/plants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   static const routePath = '/MainScreen';
 
   const MainScreen({super.key});
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _webScreens = [
-    const HomeScreen(), // Home screen
-    const PalantsScreen(), // Plants screen
+  final List<Widget> _webScreens = const [
+    HomeScreen(), // Home screen
+    PalantsScreen(), // Plants screen
+    SeedScreen(),
+    PotsplantetScreen(),
+    OfferScreen()
   ];
 
-  void _onNavItemSelected(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  void _onNavItemSelected(BuildContext context, int index) {
+    context.read<HomeBloc>().add(HomeEvent.selectScreen(index));
   }
 
   @override
@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       appBar: CommenAppbar(
         onMenuItemTap: (index) {
-          _onNavItemSelected(index);
+          _onNavItemSelected(context, index);
         },
       ),
       drawer: isMobile
@@ -52,18 +52,31 @@ class _MainScreenState extends State<MainScreen> {
               ),
             )
           : null,
-      body: isMobile
-          ? const BottomBarScreen() // For mobile, you can use a bottom bar
-          : SingleChildScrollView(
-              child: Column(
-              children: [
-                ImageCarousel(),
-                _webScreens[_selectedIndex],
-                const ResponsiveFooter(),
-              ],
-            )), // No drawer for web
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          int selectedIndex = 0;
+          state.when(
+            initial: () {
+              selectedIndex = 0;
+            },
+            screenSelected: (index) {
+              selectedIndex = index;
+            },
+          );
 
-      //  // For web, switch between screens
+          return isMobile
+              ? const BottomBarScreen() // For mobile, you can use a bottom bar
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ImageCarousel(),
+                      _webScreens[selectedIndex],
+                      const ResponsiveFooter(),
+                    ],
+                  ),
+                );
+        },
+      ),
     );
   }
 }
